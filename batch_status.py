@@ -26,47 +26,46 @@ def xml_to_batch_statuses(file_path):
     tree = ET.parse(file_path)
     root = tree.getroot()
     rows = root.findall('.//ss:Worksheet/ss:Table/ss:Row', ns)
-    header = True
     
     session = Session()
-    for row in rows:
-        if header:
-            header = False
-            continue
-        
+    for idx, row in enumerate(rows):
         cells = row.findall('ss:Cell/ss:Data', ns)
-        if len(cells) == 9:
-            datetime_str = cells[0].text
-            tabulator_number = int(cells[1].text)
-            tabulator_name = cells[2].text
-            batch_number = int(cells[3].text)
-            result_file_name = cells[4].text
-            lead_ballots = int(cells[5].text)
-            total_ballots = int(cells[6].text)
-            result_state = cells[7].text
-            adjudication_state = cells[8].text
-            
-            # Convert string datetime to datetime object
-            datetime_obj = datetime.datetime.strptime(datetime_str, "%m/%d/%Y %I:%M:%S %p")
 
-            # Check if exists
-            existing = session.query(BatchStatus).filter_by(tabulator_number=tabulator_number, batch_number=batch_number).first()
-            if existing:
-                existing.datetime = datetime_obj
-                existing.tabulator_name = tabulator_name
-                existing.result_file_name = result_file_name
-                existing.lead_ballots = lead_ballots
-                existing.total_ballots = total_ballots
-                existing.result_state = result_state
-                existing.adjudication_state = adjudication_state
-            else:
-                new_record = BatchStatus(datetime=datetime_obj, tabulator_number=tabulator_number,
-                                         tabulator_name=tabulator_name, batch_number=batch_number,
-                                         result_file_name=result_file_name, lead_ballots=lead_ballots,
-                                         total_ballots=total_ballots, result_state=result_state,
-                                         adjudication_state=adjudication_state)
-                session.add(new_record)
-            session.commit()
+        # We check if the row has sufficient cells and skip if any cell content looks non-numeric where it shouldn't
+        if len(cells) < 9 or not cells[1].text.isdigit() or not cells[3].text.isdigit():
+            continue  # Skip header rows or any malformed rows
+
+        datetime_str = cells[0].text
+        tabulator_number = int(cells[1].text)
+        tabulator_name = cells[2].text
+        batch_number = int(cells[3].text)
+        result_file_name = cells[4].text
+        lead_ballots = int(cells[5].text)
+        total_ballots = int(cells[6].text)
+        result_state = cells[7].text
+        adjudication_state = cells[8].text
+
+        # Convert string datetime to datetime object
+        datetime_obj = datetime.datetime.strptime(datetime_str, "%m/%d/%Y %I:%M:%S %p")
+
+        # Check if exists
+        existing = session.query(BatchStatus).filter_by(tabulator_number=tabulator_number, batch_number=batch_number).first()
+        if existing:
+            existing.datetime = datetime_obj
+            existing.tabulator_name = tabulator_name
+            existing.result_file_name = result_file_name
+            existing.lead_ballots = lead_ballots
+            existing.total_ballots = total_ballots
+            existing.result_state = result_state
+            existing.adjudication_state = adjudication_state
+        else:
+            new_record = BatchStatus(datetime=datetime_obj, tabulator_number=tabulator_number,
+                                     tabulator_name=tabulator_name, batch_number=batch_number,
+                                     result_file_name=result_file_name, lead_ballots=lead_ballots,
+                                     total_ballots=total_ballots, result_state=result_state,
+                                     adjudication_state=adjudication_state)
+            session.add(new_record)
+        session.commit()
     session.close()
 
 
