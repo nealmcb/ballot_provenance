@@ -4,6 +4,20 @@ Process a Dominion package backup file, extracting images and hashing them
 
 Optionally extract into a new filesystem of png images as we go?
 
+input or command-line argument: database named after election
+
+log, with timestamps:
+  names of input files
+  all batches processed  [any time batch name changes in set of tif files processed]
+     [don't mark batches done until end of file? or end of batch]
+
+add any metadata?
+  reproduce timestamp of tiff? or of first AuditMark or adjudication?
+  or current timestamp? now or beginning of run?
+  election name?
+  county?
+  signature
+
 """
 
 import sys
