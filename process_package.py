@@ -18,6 +18,10 @@ add any metadata?
   county?
   signature
 
+Confirm match for count of ballot sheets vs number of hashes for ballot sheets (front side)
+
+Audit ballot image hash data vs cvr data - make sure there is one-for-one correspondence.
+
 """
 
 import sys
