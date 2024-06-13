@@ -1,0 +1,97 @@
+INFO:root:Starting processing of zip file /srv/s/electionaudits/provenance/test/sample-election-trimmed_package.zip
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000003.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000003.tif, 116898 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000003.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000003.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000003.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000002.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000002.tif, 118892 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000002.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000002.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000002.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000006.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000006.tif, 106410 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000006.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000006.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000006.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000001.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000001.tif, 107876 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000001.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000001.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000001.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000004.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000004.tif, 117800 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000004.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000004.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000004.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000005.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000005.tif, 110042 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000005.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000005.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch002/Images/00005_00002_000005.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000001.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000001.tif, 108028 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000001.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000001.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000001.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000005.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000005.tif, 107429 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000005.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000005.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000005.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000002.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000002.tif, 118666 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000002.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000002.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000002.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000004.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000004.tif, 117536 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000004.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000004.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000004.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000006.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000006.tif, 106975 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000006.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000006.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000006.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000003.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000003.tif, 116250 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000003.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000003.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch001/Images/00005_00001_000003.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000001.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000001.tif, 107819 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000001.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000001.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000001.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000004.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000004.tif, 118420 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000004.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000004.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000004.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000003.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000003.tif, 117340 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000003.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000003.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000003.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000005.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000005.tif, 106342 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000005.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000005.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000005.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000002.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000002.tif, 118572 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000002.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000002.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000002.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000006.tif
+INFO:root:Read sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000006.tif, 106975 B
+INFO:root:Successfully processed image 0 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000006.tif
+INFO:root:Successfully processed image 1 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000006.tif
+INFO:root:Successfully processed image 2 from file sample-election-trimmed_package/Results/Tabulator00005/Batch003/Images/00005_00003_000006.tif
+INFO:root:Encountering file sample-election-trimmed_package/Results/CVR_Export_20240412114633.csv
+INFO:root:Skipping file sample-election-trimmed_package/Results/CVR_Export_20240412114633.csv
+INFO:root:Encountering file sample-election-trimmed_package/Results/CVR_Export_20240412114626.zip
+INFO:root:Skipping file sample-election-trimmed_package/Results/CVR_Export_20240412114626.zip
+INFO:root:Skipped 2 files not in Results directory
+INFO:root:Finished processing of zip file /srv/s/electionaudits/provenance/test/sample-election-trimmed_package.zip

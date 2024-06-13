@@ -89,8 +89,7 @@ def main():
             except Exception as e:
                 logging.error(f"Failed to read file {fn} from zip: {e}")
                 continue
-            logging.info(f"Successfully read file {fn} from zip")
-            print(f'{ballot_name}: {len(raw)}')
+            logging.info(f"Read {fn}, {len(raw)} B")
             buffer = io.BytesIO(raw)
             try:
                 image = Image.open(buffer)
@@ -104,7 +103,7 @@ def main():
         else:
             logging.info(f"Skipping file {zipinfo.filename}")
 
-    logging.info(f"Skipped {skipcount} files not in Results directory"
+    logging.info(f"Skipped {skipcount} files not in Results directory")
     logging.info(f"Finished processing of zip file {args.zipfile}")
 
 
@@ -117,6 +116,7 @@ def process_png(ballot_name, tiff_page, image_data):
     print(f'{hash_sha256.hexdigest()}: {pngname}')
     with open(pngname, "wb") as pngfile:
         pngfile.write(image_data_content)
+
 
 if __name__ == '__main__':
     main()
