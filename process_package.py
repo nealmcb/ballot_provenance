@@ -32,8 +32,9 @@ import zipfile
 from PIL import Image, ImageSequence
 import hashlib
 
+
 def extract_pngs(tiffimage):
-    "An iterator to return a series of png buffers from a multi-layer Image"
+    """An iterator to return a series of png buffers from a multi-layer Image"""
 
     for page, image in enumerate(ImageSequence.Iterator(tiffimage)):
         """
@@ -47,6 +48,7 @@ def extract_pngs(tiffimage):
         # image.show()
         buffer.seek(0)
         yield buffer
+
 
 def main():
     zipf = zipfile.ZipFile(sys.argv[1])
@@ -62,7 +64,7 @@ def main():
             buffer = io.BytesIO(raw)
             image = Image.open(buffer)
 
-            #with open("/tmp/f.tif", "wb") as tf:
+            # with open("/tmp/f.tif", "wb") as tf:
             #    tf.write(raw)
 
             for i, page in enumerate(extract_pngs(image)):
@@ -74,18 +76,20 @@ def main():
                     pngfile.write(page.read())
                 # f"{id}-%d.png
 
+
 def extract_images_from_tiff(input_file, output_dir):
-  """Extracts each image from a TIFF file and saves it as a PNG file.
+    """Extracts each image from a TIFF file and saves it as a PNG file.
 
   Args:
     input_file: The path to the input TIFF file.
     output_dir: The directory where the output PNG files will be saved.
   """
 
-  with Image.open(input_file) as image:
-    for i in range(image.n_frames):
-      image.seek(i)
-      image.save(f"{output_dir}/image_{i}.png")
+    with Image.open(input_file) as image:
+        for i in range(image.n_frames):
+            image.seek(i)
+            image.save(f"{output_dir}/image_{i}.png")
+
 
 if __name__ == '__main__':
     main()
