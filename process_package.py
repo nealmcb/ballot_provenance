@@ -29,6 +29,7 @@ Audit ballot image hash data vs cvr data - make sure there is one-for-one corres
 import sys
 import os
 import logging
+import argparse
 import io
 import zipfile
 from PIL import Image, ImageSequence
@@ -53,14 +54,31 @@ def extract_pngs(tiffimage):
 
 
 def main():
-    logging.info(f"Starting processing of zip file {sys.argv[1]}")
+    parser = argparse.ArgumentParser(
+        description='Process a Dominion package backup file, extracting images and hashing them.')
+    parser.add_argument('zipfile', type=str, help='The zip file to process.')
+    parser.add_argument('-d', '--debug', type=int, default=0, help='Set the debug level.')
+    args = parser.parse_args()
+
+    logging.basicConfig(level=args.debug)
+
+    logging.info(f"Starting processing of zip file {args.zipfile}")
     try:
-        zipf = zipfile.ZipFile(sys.argv[1])
+        zipf = zipfile.ZipFile(args.zipfile)
     except (FileNotFoundError, zipfile.BadZipFile) as e:
-        logging.error(f"Failed to open zip file {sys.argv[1]}: {e}")
+        logging.error(f"Failed to open zip file {args.zipfile}: {e}")
         sys.exit(1)
 
+    skipcount = 0
     for zipinfo in zipf.infolist():
+        if zipinfo.is_dir():
+            continue
+
+        # Count files that are not in the "Results" directory
+        if "/Results/" not in zipinfo.filename:
+            skipcount += 1
+            continue
+
         logging.info("Encountering file %s" % zipinfo.filename)
         if zipinfo.filename.endswith(".tif"):
             fn = zipinfo.filename
@@ -86,7 +104,8 @@ def main():
         else:
             logging.info(f"Skipping file {zipinfo.filename}")
 
-    logging.info(f"Finished processing of zip file {sys.argv[1]}")
+    logging.info(f"Skipped {skipcount} files not in Results directory"
+    logging.info(f"Finished processing of zip file {args.zipfile}")
 
 
 def process_png(ballot_name, tiff_page, image_data):
