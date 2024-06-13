@@ -2,21 +2,23 @@
 """
 Process a Dominion package backup file, extracting images and hashing them
 
-Optionally extract into a new filesystem of png images as we go?
+Optionally save extracted png images as we go
 
-input or command-line argument: database named after election
+Input or command-line argument: project backup as zip file, named after election
 
 log, with timestamps:
   names of input files
   all batches processed  [any time batch name changes in set of tif files processed]
      [don't mark batches done until end of file? or end of batch]
 
-add any metadata?
-  reproduce timestamp of tiff? or of first AuditMark or adjudication?
-  or current timestamp? now or beginning of run?
-  election name?
-  county?
-  signature
+TODO:
+
+  * add any metadata to png image?
+  *reproduce timestamp of tiff? or of first AuditMark or adjudication?
+     or current timestamp? now or beginning of run?
+  * election name?
+  * county?
+  * signature
 
 Confirm match for count of ballot sheets vs number of hashes for ballot sheets (front side)
 
@@ -57,38 +59,30 @@ def main():
         logging.info("Encountering file %s" % zipinfo.filename)
         if zipinfo.filename.endswith(".tif"):
             fn = zipinfo.filename
-            bn = os.path.splitext(os.path.basename(fn))[0]
+            ballot_name = os.path.splitext(os.path.basename(fn))[0]
             with zipf.open(fn) as zf:
                 raw = zf.read()
-            print(f'{bn}: {len(raw)}')
+            print(f'{ballot_name}: {len(raw)}')
             buffer = io.BytesIO(raw)
             image = Image.open(buffer)
 
             # with open("/tmp/f.tif", "wb") as tf:
             #    tf.write(raw)
 
-            for i, page in enumerate(extract_pngs(image)):
-                pngname = f'{bn}-{i}.png'
-                hash_sha256 = hashlib.sha256(page.read())
-                print(f'{hash_sha256.hexdigest()}: {pngname}')
-                with open(pngname, "wb") as pngfile:
-                    page.seek(0)
-                    pngfile.write(page.read())
-                # f"{id}-%d.png
+            for tiff_page, image_data in enumerate(extract_pngs(image)):
+                process_png(ballot_name, tiff_page, image_data)
 
 
-def extract_images_from_tiff(input_file, output_dir):
-    """Extracts each image from a TIFF file and saves it as a PNG file.
+def process_png(ballot_name, tiff_page, image_data):
+    """Convert a single page of a tiff image to PNG, hash it and save it to disk"""
 
-  Args:
-    input_file: The path to the input TIFF file.
-    output_dir: The directory where the output PNG files will be saved.
-  """
-
-    with Image.open(input_file) as image:
-        for i in range(image.n_frames):
-            image.seek(i)
-            image.save(f"{output_dir}/image_{i}.png")
+    pngname = f'{ballot_name}-{tiff_page}.png'
+    hash_sha256 = hashlib.sha256(image_data.read())
+    print(f'{hash_sha256.hexdigest()}: {pngname}')
+    with open(pngname, "wb") as pngfile:
+        image_data.seek(0)
+        pngfile.write(image_data.read())
+    # f"{id}-%d.png
 
 
 if __name__ == '__main__':
