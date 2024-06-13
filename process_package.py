@@ -112,13 +112,11 @@ def process_png(ballot_name, tiff_page, image_data):
     """Convert a single page of a tiff image to PNG, hash it and save it to disk"""
 
     pngname = f'{ballot_name}-{tiff_page}.png'
-    hash_sha256 = hashlib.sha256(image_data.read())
+    image_data_content = image_data.read()
+    hash_sha256 = hashlib.sha256(image_data_content)
     print(f'{hash_sha256.hexdigest()}: {pngname}')
     with open(pngname, "wb") as pngfile:
-        image_data.seek(0)
-        pngfile.write(image_data.read())
-    # f"{id}-%d.png
-
+        pngfile.write(image_data_content)
 
 if __name__ == '__main__':
     main()
