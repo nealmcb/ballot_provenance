@@ -53,24 +53,40 @@ def extract_pngs(tiffimage):
 
 
 def main():
-    zipf = zipfile.ZipFile(sys.argv[1])
+    logging.info(f"Starting processing of zip file {sys.argv[1]}")
+    try:
+        zipf = zipfile.ZipFile(sys.argv[1])
+    except (FileNotFoundError, zipfile.BadZipFile) as e:
+        logging.error(f"Failed to open zip file {sys.argv[1]}: {e}")
+        sys.exit(1)
 
     for zipinfo in zipf.infolist():
         logging.info("Encountering file %s" % zipinfo.filename)
         if zipinfo.filename.endswith(".tif"):
             fn = zipinfo.filename
             ballot_name = os.path.splitext(os.path.basename(fn))[0]
-            with zipf.open(fn) as zf:
-                raw = zf.read()
+            try:
+                with zipf.open(fn) as zf:
+                    raw = zf.read()
+            except Exception as e:
+                logging.error(f"Failed to read file {fn} from zip: {e}")
+                continue
+            logging.info(f"Successfully read file {fn} from zip")
             print(f'{ballot_name}: {len(raw)}')
             buffer = io.BytesIO(raw)
-            image = Image.open(buffer)
-
-            # with open("/tmp/f.tif", "wb") as tf:
-            #    tf.write(raw)
+            try:
+                image = Image.open(buffer)
+            except Exception as e:
+                logging.error(f"Failed to open image from file {fn}: {e}")
+                continue
 
             for tiff_page, image_data in enumerate(extract_pngs(image)):
                 process_png(ballot_name, tiff_page, image_data)
+                logging.info(f"Successfully processed image {tiff_page} from file {fn}")
+        else:
+            logging.info(f"Skipping file {zipinfo.filename}")
+
+    logging.info(f"Finished processing of zip file {sys.argv[1]}")
 
 
 def process_png(ballot_name, tiff_page, image_data):
