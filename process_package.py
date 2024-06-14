@@ -13,16 +13,19 @@ log, with timestamps:
 
 TODO:
 
-  * add any metadata to png image?
-  *reproduce timestamp of tiff? or of first AuditMark or adjudication?
-     or current timestamp? now or beginning of run?
+* Parse Batches Loaded Report.xml and update database, tracking newly finalized ballots
+* Only generate hashes for the new ones
+
+* Add any metadata to png image?
+  * reproduce timestamp of tiff? or of first AuditMark or adjudication?
+   or current timestamp? now or beginning of run?
   * election name?
   * county?
   * signature
 
-Confirm match for count of ballot sheets vs number of hashes for ballot sheets (front side)
+* Confirm match for count of ballot sheets vs number of hashes for ballot sheets (front side)
 
-Audit ballot image hash data vs cvr data - make sure there is one-for-one correspondence.
+* Audit ballot image hash data vs cvr data - make sure there is one-for-one correspondence.
 
 """
 

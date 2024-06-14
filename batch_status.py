@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""
+Process Dominion Batches Loaded Report.xml
+"""
+
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -22,6 +27,8 @@ class BatchStatus(Base):
 
 
 def xml_to_batch_statuses(file_path):
+    global Session
+
     ns = {'ss': 'urn:schemas-microsoft-com:office:spreadsheet'}
     tree = ET.parse(file_path)
     root = tree.getroot()
@@ -69,10 +76,14 @@ def xml_to_batch_statuses(file_path):
     session.close()
 
 
-engine = create_engine('sqlite:///election_provenance.db')
-Base.metadata.create_all(engine)
+def init():
+    global Session
 
-Session = sessionmaker(bind=engine)
+    engine = create_engine('sqlite:///election_provenance.db')
+    Base.metadata.create_all(engine)
+
+    Session = sessionmaker(bind=engine)
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -80,4 +91,6 @@ if __name__ == "__main__":
         sys.exit(1)
     
     file_path = sys.argv[1]
+
+    init()
     xml_to_batch_statuses(file_path)
