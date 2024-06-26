@@ -1,7 +1,19 @@
 #!/usr/bin/env python3
 """
 Process Dominion Batches Loaded Report.xml
+
+TODO:
+* Report statistics:
+  * Number of batches in each state
+  * Number of ballots and lead ballots in each state
 """
+
+import logging
+import os
+
+# FIXME: This is a hack to silence a warning that the code needs updating
+# for the latest version of SQLAlchemy, 2.0
+os.environ['SQLALCHEMY_SILENCE_UBER_WARNING'] = '1'
 
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
@@ -12,6 +24,9 @@ import datetime
 
 Base = declarative_base()
 
+
+# TODO: What are all the possible values for Results State and Adjudication State?
+# TODO: What are Lead Ballots vs Total Ballots?
 class BatchStatus(Base):
     __tablename__ = 'batch_status'
     # Defining composite primary key (Tabulator Number, Batch Number)
@@ -22,8 +37,16 @@ class BatchStatus(Base):
     result_file_name = Column(String)
     lead_ballots = Column(Integer)
     total_ballots = Column(Integer)
+    # Possible Values: Rejected, Published, Accepted(?)
     result_state = Column(String)
+    # Possible Values: Adjudicated,
     adjudication_state = Column(String)
+    # Values: No, Yes, Published(?)
+    hashed = Column(String)
+
+    def __repr__(self):
+        return f"<BatchStatus({self.tabulator_number}-{self.batch_number}, {self.datetime}, {self.adjudication_state}, {self.result_state}, lead_ballots={self.lead_ballots}, total_ballots={self.total_ballots}>"
+        # , result_file_name={self.result_file_name}, lead_ballots={self.lead_ballots}, total_ballots={self.total_ballots},
 
 
 def xml_to_batch_statuses(file_path):
@@ -38,6 +61,7 @@ def xml_to_batch_statuses(file_path):
     for idx, row in enumerate(rows):
         cells = row.findall('ss:Cell/ss:Data', ns)
 
+        # TODO: Is there a cleaner more robust way to use the header labels for extraction?
         # We check if the row has sufficient cells and skip if any cell content looks non-numeric where it shouldn't
         if len(cells) < 9 or not cells[1].text.isdigit() or not cells[3].text.isdigit():
             continue  # Skip header rows or any malformed rows
@@ -58,6 +82,7 @@ def xml_to_batch_statuses(file_path):
         # Check if exists
         existing = session.query(BatchStatus).filter_by(tabulator_number=tabulator_number, batch_number=batch_number).first()
         if existing:
+            # TODO: Check for differences. If found, log and save
             existing.datetime = datetime_obj
             existing.tabulator_name = tabulator_name
             existing.result_file_name = result_file_name
@@ -70,8 +95,9 @@ def xml_to_batch_statuses(file_path):
                                      tabulator_name=tabulator_name, batch_number=batch_number,
                                      result_file_name=result_file_name, lead_ballots=lead_ballots,
                                      total_ballots=total_ballots, result_state=result_state,
-                                     adjudication_state=adjudication_state)
+                                     adjudication_state=adjudication_state, hashed="No")
             session.add(new_record)
+            logging.info(f"Added new record: {new_record}")
         session.commit()
     session.close()
 
@@ -86,6 +112,8 @@ def init():
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=20)
+
     if len(sys.argv) != 2:
         print("Usage: python script.py <file_path>")
         sys.exit(1)

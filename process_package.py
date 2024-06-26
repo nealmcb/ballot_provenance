@@ -13,8 +13,18 @@ log, with timestamps:
 
 TODO:
 
-* Parse Batches Loaded Report.xml and update database, tracking newly finalized ballots
+* Revise this main() and xml_to_batch_statuses to:
+  * Take a Batches Loaded file as input (-b option)
+  * Parse the Batches loaded file along the lines used in batch_status.py
+  * Take note of all batches which are now both Adjudicated and Published
+  * While processing the .tif files skip those that are hashed,
+    or not yet Adjudicated and Published
+  * Update hashed value when a batch is done
+* Add option to specify alternative Batches Loaded Report.xml file
 * Only generate hashes for the new ones
+* Update batch status after reliably saving hashes for images in the batch
+
+* Describe to public using "Transparency Service" framing ala https://excid-io.github.io/discgrid/
 
 * Add any metadata to png image?
   * reproduce timestamp of tiff? or of first AuditMark or adjudication?
@@ -27,6 +37,9 @@ TODO:
 
 * Audit ballot image hash data vs cvr data - make sure there is one-for-one correspondence.
 
+* Store hashes in database also?
+
+* Add a workflow for hashing redacted images
 """
 
 import sys
