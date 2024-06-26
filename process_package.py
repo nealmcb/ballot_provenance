@@ -73,6 +73,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Process a Dominion package backup file, extracting images and hashing them.')
     parser.add_argument('zipfile', type=str, help='The zip file to process.')
+    parser.add_argument('-s', '--save', action='store_true', help='Save extracted PNG images.')
     parser.add_argument('-d', '--debug', type=int, default=0, help='Set the debug level.')
     args = parser.parse_args()
 
@@ -114,7 +115,7 @@ def main():
                 continue
 
             for tiff_page, image_data in enumerate(extract_pngs(image)):
-                process_png(ballot_name, tiff_page, image_data)
+                process_png(ballot_name, tiff_page, image_data, args.save)
                 logging.info(f"Successfully processed image {tiff_page} from file {fn}")
         else:
             logging.info(f"Skipping file {zipinfo.filename}")
@@ -123,15 +124,16 @@ def main():
     logging.info(f"Finished processing of zip file {args.zipfile}")
 
 
-def process_png(ballot_name, tiff_page, image_data):
+def process_png(ballot_name, tiff_page, image_data, save_images):
     """Convert a single page of a tiff image to PNG, hash it and save it to disk"""
 
     pngname = f'{ballot_name}-{tiff_page}.png'
     image_data_content = image_data.read()
     hash_sha256 = hashlib.sha256(image_data_content)
     print(f'{hash_sha256.hexdigest()}: {pngname}')
-    with open(pngname, "wb") as pngfile:
-        pngfile.write(image_data_content)
+    if save_images:
+        with open(pngname, "wb") as pngfile:
+            pngfile.write(image_data_content)
 
 
 if __name__ == '__main__':
