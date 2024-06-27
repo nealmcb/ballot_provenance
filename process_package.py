@@ -13,6 +13,9 @@ log, with timestamps:
 
 TODO:
 
+* Consider optimizations:
+  * Use multiprocessing
+  * Port to rust
 * Revise this main() and xml_to_batch_statuses to:
   * Take a Batches Loaded file as input (-b option)
   * Parse the Batches loaded file along the lines used in batch_status.py
