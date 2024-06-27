@@ -90,6 +90,7 @@ def main():
         sys.exit(1)
 
     skipcount = 0
+    print("file,sha256")
     for zipinfo in zipf.infolist():
         if zipinfo.is_dir():
             continue
@@ -105,11 +106,14 @@ def main():
             ballot_name = os.path.splitext(os.path.basename(fn))[0]
             try:
                 with zipf.open(fn) as zf:
-                    raw = zf.read()
+                    hash_sha256 = hashlib.sha256(zf.read())
+                    # raw = zf.read()
             except Exception as e:
                 logging.error(f"Failed to read file {fn} from zip: {e}")
                 continue
-            logging.info(f"Read {fn}, {len(raw)} B")
+            print(f'"{fn}",{hash_sha256.hexdigest()}')
+            continue
+            # logging.info(f"Read {fn}, {len(raw)} B")
             buffer = io.BytesIO(raw)
             try:
                 image = Image.open(buffer)
