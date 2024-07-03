@@ -13,6 +13,7 @@ log, with timestamps:
 
 TODO:
 
+* Add timestamps to log messages
 * Consider optimizations:
   * Use multiprocessing
   * Port to rust
@@ -95,24 +96,26 @@ def main():
         if zipinfo.is_dir():
             continue
 
+        logging.info("Encountering file %s" % zipinfo.filename)
+
         # Count files that are not in the "Results" directory
-        if "/Results/" not in zipinfo.filename:
+        if "Results/" not in zipinfo.filename:
+
             skipcount += 1
             continue
 
-        logging.info("Encountering file %s" % zipinfo.filename)
         if zipinfo.filename.endswith(".tif"):
             fn = zipinfo.filename
             ballot_name = os.path.splitext(os.path.basename(fn))[0]
             try:
                 with zipf.open(fn) as zf:
-                    hash_sha256 = hashlib.sha256(zf.read())
-                    # raw = zf.read()
+                    # hash_sha256 = hashlib.sha256(zf.read())
+                    raw = zf.read()
             except Exception as e:
                 logging.error(f"Failed to read file {fn} from zip: {e}")
                 continue
-            print(f'"{fn}",{hash_sha256.hexdigest()}')
-            continue
+            #print(f'"{fn}",{hash_sha256.hexdigest()},TIFHASH')
+            # continue
             # logging.info(f"Read {fn}, {len(raw)} B")
             buffer = io.BytesIO(raw)
             try:
